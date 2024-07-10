@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Manrope as FontSans } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+// import AuthProvider from "@/components/auth-provider";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -33,6 +34,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          {/* <AuthProvider>{children}</AuthProvider> */}
           {children}
         </ThemeProvider>
       </body>
