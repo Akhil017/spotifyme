@@ -11,7 +11,7 @@ export default async function Page() {
   if (!data) return <p>No data</p>;
 
   return (
-    <main className="max-w-6xl mx-auto pt-8 w-full space-y-16">
+    <main className="max-w-6xl mx-auto pt-8 w-full space-y-16 px-4">
       <div className="grid grid-cols-3 md:grid-cols-5 gap-8 items-center justify-center">
         {data?.items?.slice(0, 5)?.map((item) => (
           <div key={item.id} className="flex items-center justify-center">
@@ -27,7 +27,7 @@ export default async function Page() {
           </div>
         ))}
       </div>
-      <div className="w-full grid grid-cols-3 gap-8">
+      <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         <FollowersRadialChart />
         <PopularityPieChart />
         <FollowersRadialChart />

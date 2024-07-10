@@ -9,7 +9,7 @@ import ProfileDropdown from "./profile-dropdown";
 export default function AppHeader() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="max-w-6xl flex h-14 w-full mx-auto items-center">
+      <div className="max-w-6xl flex h-14 w-full mx-auto items-center px-4">
         <nav>
           <Icons.logo />
         </nav>
