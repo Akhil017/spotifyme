@@ -1,10 +1,10 @@
 import Cta from "@/components/cta";
-import Navbar from "@/components/nav-bar";
+import MainHeader from "@/components/main-header";
 
 export default function Home() {
   return (
     <main className="flex flex-col min-h-screen px-4">
-      <Navbar />
+      <MainHeader />
       <section className="pt-20 lg:pt-32 flex flex-col items-start gap-6 lg:gap-10 min-h-[calc(100vh_-_theme(spacing.16))] max-w-6xl w-full mx-auto">
         <h1 className="text-6xl lg:text-7xl font-medium">
           An overview of your

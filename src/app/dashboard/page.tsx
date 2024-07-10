@@ -1,6 +1,8 @@
 import { auth } from "@/auth";
 import { getTopArtist } from "./_actions/spotify-apis";
 import Image from "next/image";
+import FollowersRadialChart from "./_components/charts/followers-radial-chart";
+import PopularityPieChart from "./_components/charts/popularity-pie-chart";
 
 export default async function Page() {
   const session = await auth();
@@ -9,21 +11,27 @@ export default async function Page() {
   if (!data) return <p>No data</p>;
 
   return (
-    <div className="grid grid-cols-8 gap-8 container pt-8">
-      {data?.items?.map((item) => (
-        <div
-          key={item.id}
-          className="col-span-1 w-32 h-32 relative rounded-full"
-        >
-          <Image
-            src={item.images[0].url}
-            className="rounded-full"
-            alt="Picture of the author"
-            fill
-            style={{ objectFit: "cover" }}
-          />
-        </div>
-      ))}
-    </div>
+    <main className="max-w-6xl mx-auto pt-8 w-full space-y-16">
+      <div className="grid grid-cols-3 md:grid-cols-5 gap-8 items-center justify-center">
+        {data?.items?.slice(0, 5)?.map((item) => (
+          <div key={item.id} className="flex items-center justify-center">
+            <div className="col-span-1 w-24 h-24 md:w-32 md:h-32 relative rounded-full border-4 border-primary">
+              <Image
+                src={item.images[0].url}
+                className="rounded-full"
+                alt="Picture of the author"
+                fill
+                style={{ objectFit: "cover" }}
+              />
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className="w-full grid grid-cols-3 gap-8">
+        <FollowersRadialChart />
+        <PopularityPieChart />
+        <FollowersRadialChart />
+      </div>
+    </main>
   );
 }

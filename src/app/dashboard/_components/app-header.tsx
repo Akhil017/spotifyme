@@ -1,23 +1,15 @@
 import { Icons } from "@/components/icons";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { buttonVariants } from "@/components/ui/button";
 import { siteConfig } from "@/config/site-config";
 import { cn } from "@/lib/utils";
-
-import { auth } from "@/auth";
 import Link from "next/link";
-import { SignOut } from "@/app/dashboard/_components/signout-button";
+import ProfileDropdown from "./profile-dropdown";
 
-export default async function AppHeader() {
-  const session = await auth();
-  // console.log("session in server", session);
-
-  if (!session) return <div>Not authenticated</div>;
-
+export default function AppHeader() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-14 max-w-screen-2xl items-center">
+      <div className="max-w-6xl flex h-14 w-full mx-auto items-center">
         <nav>
           <Icons.logo />
         </nav>
@@ -33,23 +25,16 @@ export default async function AppHeader() {
                 className={cn(
                   buttonVariants({
                     variant: "ghost",
-                  }),
-                  "w-9 px-0"
+                    size: "icon",
+                  })
                 )}
               >
-                <Icons.gitHub className="h-6 w-6" />
+                <Icons.gitHub className="h-5 w-5" />
                 <span className="sr-only">GitHub</span>
               </div>
             </Link>
-
             <ThemeToggle />
-
-            <Avatar>
-              <AvatarFallback>
-                {session?.user?.name?.slice(0, 2)?.toUpperCase()}
-              </AvatarFallback>
-            </Avatar>
-            <SignOut />
+            <ProfileDropdown />
           </nav>
         </div>
       </div>
