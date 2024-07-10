@@ -1,4 +1,4 @@
-import { NextAuthConfig } from "next-auth";
+import NextAuth, { NextAuthConfig } from "next-auth";
 import SpotifyProvider from "next-auth/providers/spotify";
 
 const SPOTIFY_CLIENT_ID = process.env.AUTH_SPOTIFY_ID;
@@ -9,7 +9,12 @@ if (!SPOTIFY_CLIENT_ID || !SPOTIFY_CLIENT_SECRET) {
   throw new Error("Auth setup is incomplete");
 }
 
-export const authOptions: NextAuthConfig = {
+export const {
+  auth,
+  signIn,
+  signOut,
+  handlers: { GET, POST },
+} = NextAuth({
   providers: [
     SpotifyProvider({
       authorization:
@@ -36,4 +41,4 @@ export const authOptions: NextAuthConfig = {
       };
     },
   },
-};
+});
