@@ -7,9 +7,11 @@ import { cn } from "@/lib/utils";
 
 import { auth } from "@/auth";
 import Link from "next/link";
+import { SignOut } from "@/app/dashboard/_components/signout-button";
 
 export default async function AppHeader() {
   const session = await auth();
+  // console.log("session in server", session);
 
   if (!session) return <div>Not authenticated</div>;
 
@@ -47,6 +49,7 @@ export default async function AppHeader() {
                 {session?.user?.name?.slice(0, 2)?.toUpperCase()}
               </AvatarFallback>
             </Avatar>
+            <SignOut />
           </nav>
         </div>
       </div>

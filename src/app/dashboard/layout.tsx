@@ -1,5 +1,3 @@
-"use client";
-
 import { ReactNode } from "react";
 import AppHeader from "./_components/app-header";
 // import { useSession } from "next-auth/react";
