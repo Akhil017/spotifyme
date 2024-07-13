@@ -1,13 +1,18 @@
-import Image from "next/image";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { auth } from "@/auth";
 import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
+import Image from "next/image";
 import Link from "next/link";
+import { getArtistInfo } from "../_actions/spotify-apis";
 
-export default function ArtistProfileCard({
-  artistInfo,
+export default async function ArtistProfileCard({
+  artistId,
 }: {
-  artistInfo: ArtistInfo;
+  artistId: string;
 }) {
+  const session = await auth();
+  const artistInfo = await getArtistInfo(artistId, session?.accessToken!);
+
   if (!artistInfo) return <p>No data</p>;
 
   return (

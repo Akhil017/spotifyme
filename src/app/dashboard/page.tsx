@@ -4,6 +4,7 @@ import Image from "next/image";
 import FollowersRadialChart from "./_components/charts/followers-radial-chart";
 import { FollowersBarChart } from "./_components/charts/followers-bar-chart";
 import Link from "next/link";
+import UserProfileCard from "./_components/user-profile-card";
 
 export default async function Page() {
   const session = await auth();
@@ -26,7 +27,8 @@ export default async function Page() {
   if (!data) return <p>No data</p>;
 
   return (
-    <>
+    <div className="space-y-8">
+      <UserProfileCard />
       <h1 className="text-2xl font-semibold">Your top 5 artists</h1>
       <div className="grid grid-cols-3 md:grid-cols-5 gap-8 items-center justify-center">
         {data?.items?.slice(0, 5)?.map((item) => (
@@ -55,6 +57,6 @@ export default async function Page() {
         </div>
         <FollowersRadialChart data={populairtyData} />
       </div>
-    </>
+    </div>
   );
 }

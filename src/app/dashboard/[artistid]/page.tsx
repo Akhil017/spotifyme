@@ -1,6 +1,6 @@
-import { auth } from "@/auth";
+// import { auth } from "@/auth";
 import React from "react";
-import { getArtistInfo, getArtistTopTracks } from "../_actions/spotify-apis";
+// import { getArtistInfo, getArtistTopTracks } from "../_actions/spotify-apis";
 import ArtistProfileCard from "../_components/artist-profile-card";
 
 export default async function ArtistPage({
@@ -8,19 +8,16 @@ export default async function ArtistPage({
 }: {
   params: { artistid: string };
 }) {
-  const session = await auth();
-  const artistInfo = await getArtistInfo(
-    params.artistid,
-    session?.accessToken!
-  );
-  const artistTopTracks = await getArtistTopTracks(
-    params.artistid,
-    session?.accessToken!
-  );
+  // const session = await auth();
+
+  // const artistTopTracks = await getArtistTopTracks(
+  //   params.artistid,
+  //   session?.accessToken!
+  // );
 
   return (
     <>
-      <ArtistProfileCard artistInfo={artistInfo!} />
+      <ArtistProfileCard artistId={params.artistid} />
     </>
   );
 }
