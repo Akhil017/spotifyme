@@ -8,7 +8,9 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
   return (
     <div>
       <AppHeader />
-      {children}
+      <main className="max-w-6xl mx-auto pt-8 w-full space-y-8 px-4">
+        {children}
+      </main>
     </div>
   );
 }

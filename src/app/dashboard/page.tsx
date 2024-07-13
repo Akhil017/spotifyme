@@ -26,15 +26,16 @@ export default async function Page() {
   if (!data) return <p>No data</p>;
 
   return (
-    <main className="max-w-6xl mx-auto pt-8 w-full space-y-16 px-4">
+    <>
+      <h1 className="text-2xl font-semibold">Your top 5 artists</h1>
       <div className="grid grid-cols-3 md:grid-cols-5 gap-8 items-center justify-center">
         {data?.items?.slice(0, 5)?.map((item) => (
           <div
             key={item.id}
             className="flex items-center flex-col gap-2 justify-center cursor-pointer"
           >
-            <div className="col-span-1 w-24 h-24 md:w-32 md:h-32 relative rounded-full border-4 border-primary">
-              <Link href={item.href} target="_blank">
+            <div className="col-span-1 w-24 h-24 md:w-32 md:h-32 relative rounded-full border-4 hover:border-primary duration-300">
+              <Link href={`/dashboard/${item.id}`}>
                 <Image
                   src={item.images[0].url}
                   className="rounded-full"
@@ -54,6 +55,6 @@ export default async function Page() {
         </div>
         <FollowersRadialChart data={populairtyData} />
       </div>
-    </main>
+    </>
   );
 }
