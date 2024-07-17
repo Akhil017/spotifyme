@@ -10,7 +10,7 @@ import {
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
-import { Crown } from "lucide-react";
+import { Crown, ExternalLink } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { millisToMinutesAndSeconds } from "../_utils/helpers";
 
@@ -32,7 +32,7 @@ export default async function UserProfileCard() {
       <Card>
         <CardContent className="p-4 md:p-6 grid grid-cols-5 gap-4">
           <div className="col-span-5 md:col-span-3 flex items-start justify-start gap-4 min-h-max">
-            <div className="size-20 sm:size-24 md:size-28 relative rounded-full border-4 border-primary duration-300 shrink-0">
+            <div className="size-24  md:size-28 relative rounded-full border-4 border-primary duration-300 shrink-0">
               <Image
                 src={userInfo.images[1].url}
                 className="rounded-full"
@@ -43,36 +43,31 @@ export default async function UserProfileCard() {
             </div>
 
             <div className="flex flex-col">
-              <h3 className="text-lg sm:text-xl font-bold">
-                {userInfo.display_name}
-              </h3>
-              <div className="text-xs sm:text-base flex h-4 items-center space-x-1 sm:space-x-2 font-semibold flex-wrap">
-                <p className="text-muted-foreground">
-                  {userInfo.followers.total} Followers
-                </p>
-                <Separator orientation="vertical" />
-                <p className="text-muted-foreground">
-                  {userFollowing?.artists.total} Following
-                </p>
-                <Separator orientation="vertical" />
-                <p className="text-muted-foreground">
-                  {userPlaylist?.total} Playlist
-                </p>
-              </div>
-              <div className="flex md:flex-col gap-2 mt-4">
-                {userInfo.product === "premium" && (
-                  <Badge className="text-background w-fit">
+              <div className="flex items-center gap-4">
+                <h3 className="text-lg sm:text-xl font-bold">
+                  {userInfo.display_name}
+                </h3>
+                {userInfo?.product === "premium" && (
+                  <Badge className="text-background w-fit h-5 text-xs">
                     Premium <Crown className="size-4 ml-2" />
                   </Badge>
                 )}
-                <Link
-                  target="_blank"
-                  href={userInfo.external_urls.spotify}
-                  className="text-sm text-primary underline"
-                >
-                  See in spotify
-                </Link>
               </div>
+              <div className="flex flex-wrap text-muted-foreground font-semibold text-sm sm:text-base">
+                <p>{userInfo.followers.total} Followers</p>
+                <div className="w-0 border-r-2 mx-2" />
+                <p>{userFollowing?.artists.total} Following</p>
+                <div className="w-0 border-r-2 mx-2" />
+                <p>{userPlaylist?.total} Playlist</p>
+              </div>
+
+              <Link
+                target="_blank"
+                href={userInfo.external_urls.spotify}
+                className="flex gap-1 items-center text-sm text-primary underline mt-2"
+              >
+                <ExternalLink className="size-4" /> See in spotify
+              </Link>
             </div>
           </div>
           <div className="col-span-5 md:col-span-2  flex-1 flex flex-col items-start md:items-center justify-center">
@@ -92,7 +87,7 @@ export default async function UserProfileCard() {
                   <p className="text-sm truncate max-w-52">
                     {currentlyPlaying?.item?.name}
                   </p>
-                  <p className="text-xs text-muted-foreground flex gap-1.5 flex-wrap line-clamp-1">
+                  <p className="text-xs text-muted-foreground flex gap-1.5 flex-wrap line-clamp-2">
                     {currentlyPlaying?.item?.artists?.map((artist) => (
                       <span key={artist.id}>{artist.name}</span>
                     ))}
