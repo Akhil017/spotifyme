@@ -22,6 +22,47 @@ export async function getUserInfo(token: string) {
   }
 }
 
+export async function getUserFollowing(token: string) {
+  try {
+    const res = await fetch(
+      `${SPOTIFY_API_BASE_URL}/me/following?type=artist`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          Accept: "*/*",
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    if (!res.ok) {
+      throw new Error(JSON.stringify(res));
+    }
+    const data = (await res.json()) as Followers;
+    return data;
+  } catch (error) {
+    console.log("error", JSON.stringify(error));
+  }
+}
+
+export async function getUserPlaylist(token: string) {
+  try {
+    const res = await fetch(`${SPOTIFY_API_BASE_URL}/me/playlists`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: "*/*",
+        "Content-Type": "application/json",
+      },
+    });
+    if (!res.ok) {
+      throw new Error(JSON.stringify(res));
+    }
+    const data = (await res.json()) as PlayList;
+    return data;
+  } catch (error) {
+    console.log("error", JSON.stringify(error));
+  }
+}
+
 export async function getTopArtist(token: string) {
   try {
     const res = await fetch(`${SPOTIFY_API_BASE_URL}/me/top/artists`, {
@@ -34,7 +75,7 @@ export async function getTopArtist(token: string) {
     if (!res.ok) {
       throw new Error(JSON.stringify(res));
     }
-    const data = (await res.json()) as { items: TopArtists[] };
+    const data = (await res.json()) as { items: Artist[] };
     return data;
   } catch (error) {
     console.log("error", JSON.stringify(error));

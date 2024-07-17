@@ -27,7 +27,7 @@ type UserInfo = {
   uri: string;
 };
 
-type TopArtists = {
+type Artist = {
   external_urls: {
     spotify: string;
   };
@@ -43,6 +43,14 @@ type TopArtists = {
   popularity: number;
   type: string;
   uri: string;
+};
+
+type Followers = {
+  artists: {
+    items: Artist[];
+    total: number;
+    href: string;
+  };
 };
 
 type ArtistInfo = {
@@ -63,7 +71,7 @@ type ArtistInfo = {
   uri: string;
 };
 
-type Artist = {
+type AlbumArtist = {
   external_urls: {
     spotify: string;
   };
@@ -88,13 +96,13 @@ type Album = {
   release_date_precision: string;
   type: string;
   uri: string;
-  artists: Artist[];
+  artists: AlbumArtist[];
   is_playable: true;
 };
 
 type ArtistTopTracks = {
   album: Album;
-  artists: Artist[];
+  artists: AlbumArtist[];
   disc_number: number;
   duration_ms: number;
   explicit: boolean;
@@ -113,4 +121,40 @@ type ArtistTopTracks = {
   type: string;
   uri: string;
   is_local: boolean;
+};
+
+type PlayListItem = {
+  collaborative: boolean;
+  description: string;
+  external_urls: {
+    spotify: string;
+  };
+  href: string;
+  id: string;
+  images: Image[];
+  name: string;
+  owner: {
+    display_name: string;
+    external_urls: {
+      spotify: string;
+    };
+    href: string;
+    id: string;
+    type: string;
+    uri: string;
+  };
+  public: boolean;
+  snapshot_id: string;
+  tracks: {
+    href: string;
+    total: number;
+  };
+  type: string;
+  uri: string;
+};
+
+type PlayList = {
+  href: string;
+  total: number;
+  items: PlayListItem[];
 };

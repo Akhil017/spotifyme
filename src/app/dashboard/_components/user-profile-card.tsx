@@ -1,13 +1,21 @@
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
-import Link from "next/link";
 import { auth } from "@/auth";
-import { getUserInfo } from "../_actions/spotify-apis";
+import {
+  getUserFollowing,
+  getUserInfo,
+  getUserPlaylist,
+} from "../_actions/spotify-apis";
 import { Separator } from "@/components/ui/separator";
 
 export default async function UserProfileCard() {
   const session = await auth();
-  const userInfo = await getUserInfo(session?.accessToken!);
+
+  const [userInfo, userFollowing, userPlaylist] = await Promise.all([
+    getUserInfo(session?.accessToken!),
+    getUserFollowing(session?.accessToken!),
+    getUserPlaylist(session?.accessToken!),
+  ]);
 
   if (!userInfo) return <p>No data</p>;
 
@@ -33,10 +41,12 @@ export default async function UserProfileCard() {
                 </p>
                 <Separator orientation="vertical" />
                 <p className="text-muted-foreground text-sm">
-                  {userInfo.followers.total} Following
+                  {userFollowing?.artists.total} Following
                 </p>
                 <Separator orientation="vertical" />
-                <p className="text-muted-foreground text-sm">{15} Playlist</p>
+                <p className="text-muted-foreground text-sm">
+                  {userPlaylist?.total} Playlist
+                </p>
               </div>
             </div>
             {/* <div className="flex gap-2 ">
