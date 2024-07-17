@@ -30,20 +30,23 @@ export default async function UserProfileCard() {
   return (
     <div>
       <Card>
-        <CardContent className="p-6 flex gap-4">
-          <div className="w-24 h-24 md:w-28 md:h-28 relative rounded-full border-4 border-primary duration-300">
-            <Image
-              src={userInfo.images[1].url}
-              className="rounded-full"
-              alt="Picture of the author"
-              fill
-              style={{ objectFit: "cover" }}
-            />
-          </div>
-          <div className="flex flex-col space-y-2">
-            <div>
-              <h3 className="text-xl font-bold">{userInfo.display_name}</h3>
-              <div className="flex h-4 items-center space-x-2 font-semibold">
+        <CardContent className="p-4 md:p-6 grid grid-cols-5 gap-4">
+          <div className="col-span-5 md:col-span-3 flex items-start justify-start gap-4 min-h-max">
+            <div className="size-20 sm:size-24 md:size-28 relative rounded-full border-4 border-primary duration-300 shrink-0">
+              <Image
+                src={userInfo.images[1].url}
+                className="rounded-full"
+                alt="Picture of the author"
+                fill
+                style={{ objectFit: "cover" }}
+              />
+            </div>
+
+            <div className="flex flex-col">
+              <h3 className="text-lg sm:text-xl font-bold">
+                {userInfo.display_name}
+              </h3>
+              <div className="text-xs sm:text-base flex h-4 items-center space-x-1 sm:space-x-2 font-semibold flex-wrap">
                 <p className="text-muted-foreground">
                   {userInfo.followers.total} Followers
                 </p>
@@ -56,27 +59,27 @@ export default async function UserProfileCard() {
                   {userPlaylist?.total} Playlist
                 </p>
               </div>
+              <div className="flex md:flex-col gap-2 mt-4">
+                {userInfo.product === "premium" && (
+                  <Badge className="text-background w-fit">
+                    Premium <Crown className="size-4 ml-2" />
+                  </Badge>
+                )}
+                <Link
+                  target="_blank"
+                  href={userInfo.external_urls.spotify}
+                  className="text-sm text-primary underline"
+                >
+                  See in spotify
+                </Link>
+              </div>
             </div>
-            {userInfo.product === "premium" && (
-              <p>
-                <Badge className="text-background">
-                  Premium <Crown className="size-4 ml-2" />
-                </Badge>
-              </p>
-            )}
-            <Link
-              target="_blank"
-              href={userInfo.external_urls.spotify}
-              className="text-sm text-primary underline"
-            >
-              See in spotify
-            </Link>
           </div>
-          <div className="flex-1 flex flex-col items-center justify-center">
-            <div className="flex flex-col gap-4">
-              {/* <h3>Recently played</h3> */}
+          <div className="col-span-5 md:col-span-2  flex-1 flex flex-col items-start md:items-center justify-center">
+            <div className="flex flex-col gap-2">
+              <h3 className="md:hidden">Recently played</h3>
               <div className="flex gap-2">
-                <div className="size-16 relative rounded-full border-2 duration-300">
+                <div className="size-16 relative rounded-full border-2 duration-300 shrink-0">
                   <Image
                     src={currentlyPlaying?.item?.album?.images[0]?.url!}
                     alt="Picture of the author"
@@ -86,8 +89,10 @@ export default async function UserProfileCard() {
                   />
                 </div>
                 <div>
-                  <p className="text-sm">{currentlyPlaying?.item?.name}</p>
-                  <p className="text-xs text-muted-foreground space-x-1.5">
+                  <p className="text-sm truncate max-w-52">
+                    {currentlyPlaying?.item?.name}
+                  </p>
+                  <p className="text-xs text-muted-foreground flex gap-1.5 flex-wrap line-clamp-1">
                     {currentlyPlaying?.item?.artists?.map((artist) => (
                       <span key={artist.id}>{artist.name}</span>
                     ))}
@@ -100,7 +105,7 @@ export default async function UserProfileCard() {
                       }
                       className="w-full h-1.5"
                     />
-                    <p className="text-xs text-muted-foreground flex items-center justify-between">
+                    <p className="text-xs text-muted-foreground flex items-center justify-between ">
                       <span>
                         {millisToMinutesAndSeconds(
                           currentlyPlaying?.progress_ms!
