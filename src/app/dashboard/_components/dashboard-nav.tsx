@@ -36,7 +36,7 @@ export function DashboardNav({ className, ...props }: DashboardNavProps) {
   return (
     <div className="relative">
       <ScrollArea className="max-w-[600px] lg:max-w-none">
-        <div className={cn("mb-4 flex items-center", className)} {...props}>
+        <div className={cn("mb-6 flex items-center", className)} {...props}>
           {examples.map((example, index) => (
             <Link
               href={example.href}

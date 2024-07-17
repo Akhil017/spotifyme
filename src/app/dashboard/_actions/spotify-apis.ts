@@ -63,6 +63,28 @@ export async function getUserPlaylist(token: string) {
   }
 }
 
+export async function getUserCurrentlyPlaying(token: string) {
+  try {
+    const res = await fetch(
+      `${SPOTIFY_API_BASE_URL}/me/player/currently-playing`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          Accept: "*/*",
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    if (!res.ok) {
+      throw new Error(JSON.stringify(res));
+    }
+    const data = (await res.json()) as CurrentlyPlaying;
+    return data;
+  } catch (error) {
+    console.log("error", JSON.stringify(error));
+  }
+}
+
 export async function getTopArtist(token: string) {
   try {
     const res = await fetch(`${SPOTIFY_API_BASE_URL}/me/top/artists`, {

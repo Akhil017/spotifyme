@@ -158,3 +158,44 @@ type PlayList = {
   total: number;
   items: PlayListItem[];
 };
+
+type CurrentlyPlaying = {
+  timestamp: number;
+  context: {
+    external_urls: {
+      spotify: string;
+    };
+    href: string;
+    type: string;
+    uri: string;
+  };
+  progress_ms: number;
+  item: {
+    album: Album;
+    artists: AlbumArtist[];
+    available_markets: string[];
+    disc_number: string;
+    duration_ms: number;
+    explicit: boolean;
+
+    external_urls: {
+      spotify: string;
+    };
+    href: string;
+    id: string;
+    is_local: boolean;
+    name: string;
+    popularity: number;
+    preview_url: string;
+    track_number: number;
+    type: string;
+    uri: string;
+  };
+  currently_playing_type: string;
+  actions: {
+    disallows: {
+      pausing: boolean;
+    };
+  };
+  is_playing: boolean;
+};
