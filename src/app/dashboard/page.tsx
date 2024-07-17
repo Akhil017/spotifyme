@@ -57,6 +57,7 @@ export default async function Page() {
         </div>
         <FollowersRadialChart data={populairtyData} />
       </div>
+      <h1 className="text-2xl font-semibold">Your top 5 tracks</h1>
     </div>
   );
 }

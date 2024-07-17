@@ -85,15 +85,20 @@ export async function getUserCurrentlyPlaying(token: string) {
   }
 }
 
-export async function getTopArtist(token: string) {
+export async function getTopArtist(token: string, limit?: number) {
   try {
-    const res = await fetch(`${SPOTIFY_API_BASE_URL}/me/top/artists`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        Accept: "*/*",
-        "Content-Type": "application/json",
-      },
-    });
+    const res = await fetch(
+      `${SPOTIFY_API_BASE_URL}/me/top/artists?limit=${
+        limit || 5
+      }&time_range=long_term`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          Accept: "*/*",
+          "Content-Type": "application/json",
+        },
+      }
+    );
     if (!res.ok) {
       throw new Error(JSON.stringify(res));
     }
