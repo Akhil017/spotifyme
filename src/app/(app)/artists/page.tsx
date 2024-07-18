@@ -13,8 +13,11 @@ export default async function Artists() {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
       {artistList?.items?.map((artist) => (
-        <Link key={artist.id} href={`/artists/${artist.id}`}>
-          <div className="p-4 border rounded-lg flex gap-2 hover:border-primary duration-300">
+        <div
+          key={artist.id}
+          className="p-4 border rounded-lg flex gap-2 hover:border-primary duration-300"
+        >
+          <Link href={`/artists/${artist.id}`}>
             <div className="size-20  md:size-28 relative rounded-full border-[3px] border-primary duration-300 shrink-0">
               <Image
                 src={artist.images[0].url}
@@ -24,22 +27,22 @@ export default async function Artists() {
                 style={{ objectFit: "cover" }}
               />
             </div>
-            <div className="space-y-2">
-              <h4 className="font-medium">{artist?.name}</h4>
-              <div className="flex gap-2 flex-wrap">
-                {artist?.genres?.map((genre) => (
-                  <Badge
-                    key={genre}
-                    variant="secondary"
-                    className="text-xs font-normal"
-                  >
-                    {genre}
-                  </Badge>
-                ))}
-              </div>
+          </Link>
+          <div className="space-y-2">
+            <h4 className="font-medium">{artist?.name}</h4>
+            <div className="flex gap-2 flex-wrap">
+              {artist?.genres?.map((genre) => (
+                <Badge
+                  key={genre}
+                  variant="secondary"
+                  className="text-xs font-normal"
+                >
+                  {genre}
+                </Badge>
+              ))}
             </div>
           </div>
-        </Link>
+        </div>
       ))}
     </div>
   );

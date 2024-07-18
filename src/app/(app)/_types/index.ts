@@ -160,30 +160,49 @@ type PlayList = {
 };
 
 type RecentlyPlayed = {
-  timestamp: number;
-  context: {
-    external_urls: {
-      spotify: string;
+  track: {
+    album: {
+      album_type: string;
+      artists: [
+        {
+          external_urls: {
+            spotify: string;
+          };
+          href: string;
+          id: string;
+          name: string;
+          type: string;
+          uri: string;
+        }
+      ];
+      available_markets: string[];
+      external_urls: {
+        spotify: string;
+      };
+      href: string;
+      id: string;
+      images: Image[];
+      name: string;
+      release_date: string;
+      release_date_precision: string;
+      total_tracks: number;
+      type: string;
+      uri: string;
     };
-    href: string;
-    type: string;
-    uri: string;
-  };
-  progress_ms: number;
-  item: {
-    album: Album;
-    artists: AlbumArtist[];
-    available_markets: string[];
-    disc_number: string;
-    duration_ms: number;
-    explicit: boolean;
-
+    artists: Artist[];
+    available_markets: [];
+    disc_number: 1;
+    duration_ms: 238986;
+    explicit: false;
+    external_ids: {
+      isrc: string;
+    };
     external_urls: {
       spotify: string;
     };
     href: string;
     id: string;
-    is_local: boolean;
+    is_local: false;
     name: string;
     popularity: number;
     preview_url: string;
@@ -191,13 +210,15 @@ type RecentlyPlayed = {
     type: string;
     uri: string;
   };
-  currently_playing_type: string;
-  actions: {
-    disallows: {
-      pausing: boolean;
+  played_at: string;
+  context: {
+    type: string;
+    external_urls: {
+      spotify: string;
     };
+    href: string;
+    uri: string;
   };
-  is_playing: boolean;
 };
 
 type TopTrack = {

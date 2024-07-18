@@ -1,5 +1,5 @@
 import { auth } from "@/auth";
-import { getTopTracks } from "../_actions/spotify-apis";
+import { getUserRecentlyPlayed } from "../_actions/spotify-apis";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -10,23 +10,26 @@ import {
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
-export default async function Tracks() {
+export default async function Recent() {
   const session = await auth();
-  const trackList = await getTopTracks(session?.accessToken!, 50);
+  const recentlyPlayedList = await getUserRecentlyPlayed(
+    session?.accessToken!,
+    50
+  );
 
-  if (!trackList) return <p>no data</p>;
+  if (!recentlyPlayedList) return <p>no data</p>;
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
-      {trackList?.items?.map((track) => (
+      {recentlyPlayedList?.items.map((item) => (
         <div
-          key={track.id}
+          key={item.track.id}
           className="p-4 border rounded-lg flex gap-2 hover:border-primary duration-300"
         >
-          <Link href={`/tracks/${track.id}`}>
+          <Link href={`/recent/${item.track.id}`}>
             <div className="size-20  md:size-28 relative rounded-full border-[3px] border-primary duration-300 shrink-0">
               <Image
-                src={track?.album?.images[0]?.url}
+                src={item?.track?.album?.images[0]?.url}
                 className="rounded-full"
                 alt="Picture of the author"
                 fill
@@ -35,9 +38,9 @@ export default async function Tracks() {
             </div>
           </Link>
           <div className="space-y-2">
-            <h4 className="font-medium">{track?.name}</h4>
+            <h4 className="font-medium">{item?.track?.name}</h4>
             <div className="flex gap-2 flex-wrap">
-              {track?.artists?.slice(0, 4).map((artist) => (
+              {item?.track?.album?.artists?.slice(0, 4).map((artist) => (
                 <Badge
                   key={artist.id}
                   variant="secondary"
@@ -46,11 +49,11 @@ export default async function Tracks() {
                   {artist.name}
                 </Badge>
               ))}
-              {track?.artists?.length > 4 && (
+              {item?.track?.album?.artists?.length > 4 && (
                 <Collapsible>
                   <CollapsibleContent>
                     <div className="flex gap-2 flex-wrap">
-                      {track?.artists?.slice(4).map((artist) => (
+                      {item?.track?.album?.artists?.slice(4).map((artist) => (
                         <Badge
                           key={artist.id}
                           variant="secondary"
