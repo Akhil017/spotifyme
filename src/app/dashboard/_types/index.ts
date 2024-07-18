@@ -159,7 +159,7 @@ type PlayList = {
   items: PlayListItem[];
 };
 
-type CurrentlyPlaying = {
+type RecentlyPlayed = {
   timestamp: number;
   context: {
     external_urls: {

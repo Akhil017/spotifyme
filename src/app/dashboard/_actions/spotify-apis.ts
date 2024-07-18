@@ -63,10 +63,10 @@ export async function getUserPlaylist(token: string) {
   }
 }
 
-export async function getUserCurrentlyPlaying(token: string) {
+export async function getUserRecentlyPlayed(token: string) {
   try {
     const res = await fetch(
-      `${SPOTIFY_API_BASE_URL}/me/player/currently-playing`,
+      `${SPOTIFY_API_BASE_URL}/me/player/recently-played`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -78,7 +78,7 @@ export async function getUserCurrentlyPlaying(token: string) {
     if (!res.ok) {
       throw new Error(JSON.stringify(res));
     }
-    const data = (await res.json()) as CurrentlyPlaying;
+    const data = (await res.json()) as RecentlyPlayed;
     return data;
   } catch (error) {
     console.log("error", JSON.stringify(error));

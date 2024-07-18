@@ -51,11 +51,13 @@ export default async function Page() {
           </div>
         ))}
       </div>
-      <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div className="col-span-2">
+      <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="col-span-1 md:col-span-2">
           <FollowersBarChart data={followersData} />
         </div>
-        <FollowersRadialChart data={populairtyData} />
+        <div className="col-span-1 w-full">
+          <FollowersRadialChart data={populairtyData} />
+        </div>
       </div>
       <h1 className="text-2xl font-semibold">Your top 5 tracks</h1>
     </div>
