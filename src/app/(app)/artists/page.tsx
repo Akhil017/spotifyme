@@ -20,7 +20,7 @@ export default async function Artists() {
           <Link href={`/artists/${artist.id}`}>
             <div className="size-20  md:size-28 relative rounded-full border-[3px] border-primary duration-300 shrink-0">
               <Image
-                src={artist.images[0].url}
+                src={artist.images[0]?.url}
                 className="rounded-full"
                 alt="Picture of the author"
                 fill
