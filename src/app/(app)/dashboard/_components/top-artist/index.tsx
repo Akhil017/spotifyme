@@ -1,9 +1,9 @@
 import Image from "next/image";
 import FollowersBarChart from "./followers-bar-chart";
 import Link from "next/link";
-import { getTopArtist } from "../../_actions/spotify-apis";
 import { Session } from "next-auth";
 import PopularityRadialChart from "./followers-radial-chart";
+import { getTopArtist } from "@/app/(app)/_actions/spotify-apis";
 
 type TopArtistProps = {
   session: Session | null;

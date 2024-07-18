@@ -1,7 +1,7 @@
+import { getTopTracks } from "@/app/(app)/_actions/spotify-apis";
 import { Session } from "next-auth";
 import Image from "next/image";
 import Link from "next/link";
-import { getTopTracks } from "../../_actions/spotify-apis";
 
 type TopArtistProps = {
   session: Session | null;

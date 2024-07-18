@@ -12,19 +12,19 @@ const examples = [
   },
   {
     name: "Artist",
-    href: "/examples/dashboard",
+    href: "/artists",
   },
   {
     name: "Tracks",
-    href: "/examples/cards",
+    href: "/tracks",
   },
   {
     name: "Recent",
-    href: "/examples/tasks",
+    href: "/recent",
   },
   {
     name: "Playlist",
-    href: "/examples/playground",
+    href: "/playlist",
   },
 ];
 
