@@ -1,5 +1,6 @@
 import { Icons } from "@/components/icons";
 import { ThemeToggle } from "./theme-toggle";
+import { siteConfig } from "@/config/site-config";
 
 export default function MainHeader() {
   return (
@@ -13,8 +14,8 @@ export default function MainHeader() {
           <Icons.logo />
         </a>
         <div className="flex items-center justify-center gap-4">
-          <a>
-            <Icons.gitHub className="w-6 h-6" />
+          <a href={siteConfig.links.github} target="_blank">
+            <Icons.gitHub className="w-5 h-5" />
           </a>
           <ThemeToggle />
         </div>
