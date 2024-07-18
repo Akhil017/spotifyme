@@ -35,15 +35,11 @@ export default async function UserProfileCard() {
             />
           </div>
           <div className="flex flex-col items-center justify-center gap-2">
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2 justify-center">
               <h3 className="text-lg sm:text-xl font-bold">
                 {userInfo.display_name}
               </h3>
-              {userInfo?.product === "premium" && (
-                <Badge className="text-background w-fit h-5 text-xs">
-                  Premium <Crown className="size-4 ml-2" />
-                </Badge>
-              )}
+              {userInfo?.product === "premium" && <Crown className="size-5" />}
             </div>
             <div className="flex flex-wrap text-muted-foreground font-semibold text-sm sm:text-base items-center justify-center">
               <p>{userInfo.followers.total} Followers</p>

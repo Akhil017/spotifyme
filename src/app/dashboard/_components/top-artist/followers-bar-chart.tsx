@@ -38,7 +38,7 @@ type FollowersBarChartProps = {
   data: { artist: string; followers: number; image: string }[];
 };
 
-export function FollowersBarChart({ data }: FollowersBarChartProps) {
+export default function FollowersBarChart({ data }: FollowersBarChartProps) {
   return (
     <Card>
       <CardHeader>

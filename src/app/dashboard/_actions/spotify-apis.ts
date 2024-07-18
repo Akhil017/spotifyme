@@ -109,6 +109,30 @@ export async function getTopArtist(token: string, limit?: number) {
   }
 }
 
+export async function getTopTracks(token: string, limit?: number) {
+  try {
+    const res = await fetch(
+      `${SPOTIFY_API_BASE_URL}/me/top/tracks?limit=${
+        limit || 5
+      }&time_range=long_term`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          Accept: "*/*",
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    if (!res.ok) {
+      throw new Error(JSON.stringify(res));
+    }
+    const data = (await res.json()) as { items: TopTrack[] };
+    return data;
+  } catch (error) {
+    console.log("error", JSON.stringify(error));
+  }
+}
+
 export async function getArtistInfo(id: string, token: string) {
   try {
     const res = await fetch(`${SPOTIFY_API_BASE_URL}/artists/${id}`, {
