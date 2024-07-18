@@ -25,7 +25,7 @@ export default async function Artists() {
               />
             </div>
             <div className="space-y-2">
-              <h4>{artist?.name}</h4>
+              <h4 className="font-medium">{artist?.name}</h4>
               <div className="flex gap-2 flex-wrap">
                 {artist?.genres?.map((genre) => (
                   <Badge
