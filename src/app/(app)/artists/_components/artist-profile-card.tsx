@@ -3,7 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 import Link from "next/link";
-import { getArtistInfo } from "../_actions/spotify-apis";
+import { getArtistInfo } from "../../_actions/spotify-apis";
 
 export default async function ArtistProfileCard({
   artistId,

@@ -1,6 +1,5 @@
 // import { auth } from "@/auth";
 import React from "react";
-// import { getArtistInfo, getArtistTopTracks } from "../_actions/spotify-apis";
 import ArtistProfileCard from "../_components/artist-profile-card";
 
 export default async function ArtistPage({

@@ -37,7 +37,7 @@ export default async function TopArtist({ session }: TopArtistProps) {
             className="flex items-center flex-col gap-2 justify-center cursor-pointer"
           >
             <div className="col-span-1 w-24 h-24 md:w-32 md:h-32 relative rounded-full border-4 hover:border-primary duration-300">
-              <Link href={`/dashboard/${item.id}`}>
+              <Link href={`/artists/${item.id}`}>
                 <Image
                   src={item.images[0].url}
                   className="rounded-full"
