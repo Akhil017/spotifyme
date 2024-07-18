@@ -1,36 +1,80 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Spotify Me
 
-## Getting Started
+### Overview
 
-First, run the development server:
+Spotify Me is an open-source web application that provides a visual overview of your Spotify account. It allows you to explore your Spotify profile, view your top artists, tracks, and playlists, and gain insights into your listening habits with a sleek and intuitive interface.
+
+### Features
+
+- View your Spotify user profile
+- Explore your top artists and tracks
+- Browse your playlists
+
+### Preview
+
+![Dashboar screenshot 1](/screenshots/app-screenshot-1.png)
+![Dashboar screenshot 2](/screenshots/app-screenshot-2.png)
+
+### Installation
+
+To get started with Spotify Dashboard, follow these steps:
+
+### Prerequisites
+
+Node.js (version 14 or higher)
+npm or yarn or pnpm
+
+### Clone the Repository
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/your-username/spotify-dashboard.git
+cd spotify-dashboard
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Install Dependencies
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm install
+# or
+npm install
+# or
+yarn install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Set Up Environment Variables
 
-## Learn More
+Create a .env file in the root of the project and add your Spotify API credentials:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+AUTH_SPOTIFY_ID="<Your spotify client id>"
+AUTH_SPOTIFY_SECRET="<Your spotify client secret>"
+AUTH_SECRET="<auth secret for auth.js>"
+NEXTAUTH_URL="<redirect uri given in the spotify api dashboard>"
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Run the Application
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```bash
+pnpm run dev
+```
 
-## Deploy on Vercel
+Visit http://localhost:3000 in your browser to see the app in action.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Usage
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. Login with Spotify: Click the "Get Started" button to authenticate with your Spotify account.
+2. Explore Your Data: Navigate through the app to view your profile, top artists, tracks, and playlists.
+
+### License
+
+This project is licensed under the MIT License. See the LICENSE file for details.
+
+### Contact
+
+For any questions or feedback, please open an issue on the GitHub repository or contact the project maintainer at akhilmp1721@gmail.com.
+
+### Acknowledgments
+
+- [Spotify API](https://developer.spotify.com/documentation/web-api) for providing access to Spotify data.
+- [Next JS](https://nextjs.org/) for the front-end framework and hosting.
+- [Shadcn UI](https://ui.shadcn.com/) for the styling framework.
