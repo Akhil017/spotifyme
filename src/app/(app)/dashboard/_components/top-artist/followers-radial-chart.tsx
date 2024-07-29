@@ -40,7 +40,7 @@ export default function PopularityRadialChart({
       <CardContent className="flex-1 pb-0">
         <ChartContainer
           config={chartConfig}
-          className="mx-auto aspect-square max-h-[200px]"
+          className="mx-auto aspect-square max-h-[250px]"
         >
           <RadialBarChart data={data} innerRadius={30} outerRadius={100}>
             {/* <ChartTooltip

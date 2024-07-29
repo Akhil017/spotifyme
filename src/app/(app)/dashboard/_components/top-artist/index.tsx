@@ -51,11 +51,11 @@ export default async function TopArtist({ session }: TopArtistProps) {
           </div>
         ))}
       </div>
-      <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div className="col-span-1 md:col-span-2">
+      <div className="w-full grid grid-cols-1 md:grid-cols-3 grid-rows-1 gap-8">
+        <div className="col-span-1 md:col-span-2 ">
           <FollowersBarChart data={followersData} />
         </div>
-        <div className="col-span-1 w-full">
+        <div className="col-span-1 w-full ">
           <PopularityRadialChart data={populairtyData} />
         </div>
       </div>
