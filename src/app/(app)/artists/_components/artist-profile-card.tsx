@@ -21,7 +21,7 @@ export default async function ArtistProfileCard({
         <CardContent className="p-6 flex gap-4">
           <div className="w-24 h-24 md:w-28 md:h-28 relative rounded-full border-4 border-primary duration-300">
             <Image
-              src={artistInfo.images[1].url}
+              src={artistInfo.images?.[1]?.url}
               className="rounded-full"
               alt="Picture of the author"
               fill

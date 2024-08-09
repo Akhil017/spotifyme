@@ -8,6 +8,7 @@ import {
   getUserInfo,
   getUserPlaylist,
 } from "../../_actions/spotify-apis";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 export default async function UserProfileCard() {
   const session = await auth();
@@ -24,15 +25,23 @@ export default async function UserProfileCard() {
     <div>
       <Card>
         <CardContent className="p-4 md:p-6 flex flex-col gap-4 items-center justify-center">
-          <div className="size-24  md:size-28 relative rounded-full border-4 border-primary duration-300 shrink-0">
-            <Image
-              src={userInfo.images[1].url}
-              className="rounded-full"
-              alt="Picture of the author"
-              fill
-              style={{ objectFit: "cover" }}
-            />
-          </div>
+          {userInfo.images?.[1]?.url ? (
+            <div className="size-24  md:size-28 relative rounded-full border-4 border-primary duration-300 shrink-0">
+              <Image
+                src={userInfo.images?.[1]?.url}
+                className="rounded-full"
+                alt="Picture of the author"
+                fill
+                style={{ objectFit: "cover" }}
+              />
+            </div>
+          ) : (
+            <Avatar className="size-24">
+              <AvatarFallback className="text-2xl font-medium text-primary border-primary border-4">
+                {userInfo?.display_name?.slice(0, 2)}
+              </AvatarFallback>
+            </Avatar>
+          )}
           <div className="flex flex-col items-center justify-center gap-2">
             <div className="flex items-center gap-2 justify-center">
               <h3 className="text-lg sm:text-xl font-bold">

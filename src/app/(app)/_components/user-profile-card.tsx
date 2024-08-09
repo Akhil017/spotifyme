@@ -27,7 +27,7 @@ export default async function UserProfileCard() {
         <CardContent className="p-4 md:p-6 flex flex-col gap-4 items-center justify-center">
           <div className="size-24  md:size-28 relative rounded-full border-4 border-primary duration-300 shrink-0">
             <Image
-              src={userInfo.images[1].url}
+              src={userInfo.images?.[1]?.url}
               className="rounded-full"
               alt="Picture of the author"
               fill
